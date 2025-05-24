@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c41wo4oad8mje"]
+[gd_scene load_steps=17 format=3 uid="uid://c41wo4oad8mje"]
 
 [ext_resource type="Texture2D" uid="uid://cjyxo40snat8l" path="res://assets/backend/MainBackground.jpg" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://cmgjwt75vk6k5" path="res://scripts/main/CameraController.cs" id="2_tbgi4"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://j1uhtfr8jrbj" path="res://scripts/main/KeyboardListener.cs" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://dtlvowiesosgo" path="res://scripts/main/MouseMovement.cs" id="4_tipki"]
 [ext_resource type="SpriteFrames" uid="uid://dutvehy2oiivi" path="res://assets/frame/Plane.tres" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://dais87ta3tw8w" path="res://scripts/main/setting/Setting.gd" id="9_85g3d"]
+[ext_resource type="AudioStream" uid="uid://yj0c4swy8xq7" path="res://assets/music/上海アリス幻樂団 - 聖徳伝説　～　True Administrator.mp3" id="10_ya4ey"]
+[ext_resource type="Script" uid="uid://rewai7ag8bxn" path="res://scripts/main/setting/audio.gd" id="11_eb6dy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tipki"]
 radius = 25.02
@@ -84,3 +87,66 @@ shape = SubResource("RectangleShape2D_choun")
 [node name="Bottom" type="CollisionShape2D" parent="MapBorder/Bottom"]
 position = Vector2(1920, 2260)
 shape = SubResource("RectangleShape2D_85g3d")
+
+[node name="Window" type="Window" parent="."]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(960, 480)
+script = ExtResource("9_85g3d")
+
+[node name="Volumn" type="HSlider" parent="Window"]
+offset_left = 288.0
+offset_top = 60.0
+offset_right = 924.0
+offset_bottom = 139.0
+metadata/_edit_group_ = true
+
+[node name="VolumnLabel" type="Label" parent="Window/Volumn"]
+layout_mode = 0
+offset_left = -200.0
+offset_top = -8.0
+offset_right = 56.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 64
+text = "音量"
+
+[node name="Sensi" type="HSlider" parent="Window"]
+offset_left = 288.0
+offset_top = 200.0
+offset_right = 924.0
+offset_bottom = 279.0
+metadata/_edit_group_ = true
+
+[node name="SensiLabel" type="Label" parent="Window/Sensi"]
+layout_mode = 0
+offset_left = -264.0
+offset_top = -6.0
+offset_right = -8.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 64
+text = "灵敏度"
+
+[node name="Sensi2" type="HSlider" parent="Window"]
+offset_left = 288.0
+offset_top = 340.0
+offset_right = 924.0
+offset_bottom = 419.0
+metadata/_edit_group_ = true
+
+[node name="SensiLabel" type="Label" parent="Window/Sensi2"]
+layout_mode = 0
+offset_left = -264.0
+offset_top = -6.0
+offset_right = -8.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 64
+text = "灵敏度"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ya4ey")
+script = ExtResource("11_eb6dy")
+
+[connection signal="close_requested" from="Window" to="Window" method="_on_close_requested"]
+[connection signal="value_changed" from="Window/Volumn" to="Window" method="_on_volumn_value_changed"]
+[connection signal="value_changed" from="Window/Sensi" to="Window" method="_on_sensi_value_changed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
