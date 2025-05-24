@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cxnegpm4w11xl"
+path="res://.godot/imported/Mr_JX - 英雄主义（没错，我的名字就是堂吉诃德）.ogg-d13d3bf10a101bfd825009d5a964ba48.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Mr_JX - 英雄主义（没错，我的名字就是堂吉诃德）.ogg"
+dest_files=["res://.godot/imported/Mr_JX - 英雄主义（没错，我的名字就是堂吉诃德）.ogg-d13d3bf10a101bfd825009d5a964ba48.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
