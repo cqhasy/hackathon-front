@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c57bwki4mdiy0"]
+[gd_scene load_steps=3 format=3 uid="uid://c57bwki4mdiy0"]
 
 [ext_resource type="Texture2D" uid="uid://cjyxo40snat8l" path="res://assets/backend/MainBackground.jpg" id="1_f1d2v"]
+[ext_resource type="Script" uid="uid://27a3dcb7hlom" path="res://scenes/pause.gd" id="1_r8yp4"]
 
 [node name="pause" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_r8yp4")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
