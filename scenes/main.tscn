@@ -1,12 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://c41wo4oad8mje"]
+[gd_scene load_steps=14 format=3 uid="uid://c41wo4oad8mje"]
 
 [ext_resource type="Texture2D" uid="uid://cjyxo40snat8l" path="res://assets/backend/MainBackground.jpg" id="1_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://b4437e67vrlgu" path="res://assets/backend/Aircraft2.png" id="2_o6xl0"]
 [ext_resource type="Script" uid="uid://cmgjwt75vk6k5" path="res://scripts/main/CameraController.cs" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://cera2xs0e5gg3" path="res://scripts/main/Player.cs" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://e133oqat2kcv" path="res://scripts/main/TimeController.cs" id="3_tefeu"]
+[ext_resource type="Script" uid="uid://derk4mkemneal" path="res://scripts/main/PlayerAnimation.cs" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://j1uhtfr8jrbj" path="res://scripts/main/KeyboardListener.cs" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://dtlvowiesosgo" path="res://scripts/main/MouseMovement.cs" id="4_tipki"]
+[ext_resource type="SpriteFrames" uid="uid://dutvehy2oiivi" path="res://assets/frame/Plane.tres" id="7_o6xl0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tipki"]
+radius = 25.02
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
+size = Vector2(100, 2160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
+size = Vector2(100, 2160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_choun"]
+size = Vector2(4040, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85g3d"]
+size = Vector2(4040, 100)
 
 [node name="Main" type="Node2D"]
 
@@ -14,16 +30,25 @@
 position = Vector2(1920, 1080)
 texture = ExtResource("1_jyhfs")
 
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(272, 223)
-scale = Vector2(0.188571, 0.188571)
-texture = ExtResource("2_o6xl0")
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(200, 200)
 script = ExtResource("2_tefeu")
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="CharacterBody2D"]
+scale = Vector2(2.5, 2.5)
+sprite_frames = ExtResource("7_o6xl0")
+animation = &"idle"
+script = ExtResource("4_85g3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_tipki")
+
+[node name="ShadowContainer" type="Node2D" parent="CharacterBody2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 script = ExtResource("2_tbgi4")
-PlayerPath = NodePath("../Player")
+PlayerPath = NodePath("../CharacterBody2D")
 
 [node name="MouseMovement" type="Node" parent="."]
 script = ExtResource("4_tipki")
@@ -33,3 +58,29 @@ script = ExtResource("3_tefeu")
 
 [node name="KeyboardListener" type="Node" parent="."]
 script = ExtResource("4_o6xl0")
+
+[node name="MapBorder" type="Node2D" parent="."]
+
+[node name="Left" type="Area2D" parent="MapBorder"]
+
+[node name="Left" type="CollisionShape2D" parent="MapBorder/Left"]
+position = Vector2(-100, 1080)
+shape = SubResource("RectangleShape2D_tipki")
+
+[node name="Right" type="Area2D" parent="MapBorder"]
+
+[node name="Right" type="CollisionShape2D" parent="MapBorder/Right"]
+position = Vector2(3940, 1080)
+shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="Top" type="Area2D" parent="MapBorder"]
+
+[node name="Top" type="CollisionShape2D" parent="MapBorder/Top"]
+position = Vector2(1920, -100)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Bottom" type="Area2D" parent="MapBorder"]
+
+[node name="Bottom" type="CollisionShape2D" parent="MapBorder/Bottom"]
+position = Vector2(1920, 2260)
+shape = SubResource("RectangleShape2D_85g3d")

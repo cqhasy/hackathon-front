@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbrjj5tawelgh"
-path="res://.godot/imported/Aircraft3.png-4035e1e60cc53bf6b0a8e398b2d11ee6.ctex"
+uid="uid://ck0qcjb57sq21"
+path="res://.godot/imported/title.jpg-0aea5568d5e56ec8f0216ce56b75c493.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/flycraft/Aircraft3.png"
-dest_files=["res://.godot/imported/Aircraft3.png-4035e1e60cc53bf6b0a8e398b2d11ee6.ctex"]
+source_file="res://assets/backend/title.jpg"
+dest_files=["res://.godot/imported/title.jpg-0aea5568d5e56ec8f0216ce56b75c493.ctex"]
 
 [params]
 
