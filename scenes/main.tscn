@@ -47,17 +47,6 @@ shape = SubResource("CircleShape2D_tipki")
 
 [node name="ShadowContainer" type="Node2D" parent="Player"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
-script = ExtResource("2_tbgi4")
-PlayerPath = NodePath("../Player")
-
-[node name="HealthBar" type="AnimatedSprite2D" parent="Camera2D"]
-position = Vector2(-427, -304)
-scale = Vector2(2.96875, 2.96875)
-sprite_frames = ExtResource("6_choun")
-animation = &"Health"
-
 [node name="MouseMovement" type="Node" parent="."]
 script = ExtResource("4_tipki")
 
@@ -95,3 +84,14 @@ shape = SubResource("RectangleShape2D_85g3d")
 
 [node name="EnemyGroup" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("2_tbgi4")
+PlayerPath = NodePath("../Player")
+
+[node name="HealthBar" type="AnimatedSprite2D" parent="Camera2D"]
+position = Vector2(-427, -304)
+scale = Vector2(2.96875, 2.96875)
+sprite_frames = ExtResource("6_choun")
+animation = &"Health"

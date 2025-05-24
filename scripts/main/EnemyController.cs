@@ -67,4 +67,10 @@ public partial class EnemyController : Node2D
         _enemyInstances.Remove(Id);
         _enemyData.DestroyEnemy(Id);
     }
+
+    public void PlayerDestroyEnemy(int Id)
+    {
+        _enemyInstances.Remove(Id);
+        _enemyData.DestroyEnemy(Id);
+    }
 }

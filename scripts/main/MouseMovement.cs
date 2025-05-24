@@ -19,7 +19,7 @@ public partial class MouseMovement : Node
             // 你可以选择归一化方向向量，或保留原始速度
             // Direction = mouseMotion.Relative.Normalized();
 
-            GD.Print($"方向: {Direction}, 长度: {Direction.Length()}");
+            //GD.Print($"方向: {Direction}, 长度: {Direction.Length()}");
         }
     }
 }

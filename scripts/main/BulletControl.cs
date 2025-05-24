@@ -31,7 +31,7 @@ public partial class BulletControl : Area2D
             DestroySelf();
         }else if(body is EnemyAI enemy && _lifeTime > 1)
         {
-            enemy.DestroySelf();
+            enemy.DestroySelfBecauseBullet();
             DestroySelf();
         }
     }

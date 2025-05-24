@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using fiycraft.scripts.main;
 using Godot;
+using System;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
@@ -13,13 +12,16 @@ public partial class Player : CharacterBody2D
 	private const int MapWidth = 3840;
 	private const int MapHeight = 2160;
 	private const float DashTime = 0.4f;
+    private const float HurtTime = 0.4f;
 
     private Vector2 _velocity = Vector2.Zero;
     private Vector2 _acceleration = Vector2.Zero;
     private Vector2 _lastUsableMouseMovement = Vector2.Zero;
     private bool _inDashMode = false;
+    private bool _inHurtMode = false;
     private double _dashingTime = 0;
     private double _recoverTimer = 0;
+    private double _hurtTimer = 0;
 
     //private bool dashingWaitingForSettingDirection = false;
 
@@ -32,6 +34,7 @@ public partial class Player : CharacterBody2D
     private KeyboardListener _keyboardListener;
     private Node2D _shadowContainer;
     private AnimatedSprite2D _healthBar;
+    private EnemyController _enemyController;
 
     public float Sensitivity { get; set; } = 1;
 
@@ -58,6 +61,7 @@ public partial class Player : CharacterBody2D
             .GetNode<Camera2D>("Camera2D")
             .GetNode<AnimatedSprite2D>("HealthBar");
         UpdateHealthBar();
+        _enemyController = GetParent().GetNode<EnemyController>("EnemyGroup");
     }
 
     public override void _Process(double delta)
@@ -69,6 +73,10 @@ public partial class Player : CharacterBody2D
         if (_inDashMode)
         {
             CreateShadow();
+        }
+        if (_inHurtMode)
+        {
+            UpdateHurtState(delta);
         }
         QueueRedraw();
         DoHealthRecover(delta);
@@ -86,31 +94,45 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    public void OnHitEnemy(int enemyId)
+    {
+        _enemyController.PlayerDestroyEnemy(enemyId);
+        _playerStates.DestroyedEnemies++;
+        GD.Print(_playerStates.DestroyedEnemies);
+    }
+
     public void OnHitByBullet()
     {
-        GD.Print("hit by bullet");
+        //GD.Print("hit by bullet");
         if (_inDashMode)
             return;
+        else if(_playerItems.ItemUsable("Shield"))
+        {
+            _playerAnimation.PlayIdle();
+        }
         else
+        {
+            _playerAnimation.PlayHurt();
             DoHealthDecrease();
+        }
     }
 
     public void OnCtrlPressed()
     {
-        GD.Print("Ctrl 被按下，Player 收到信号！");
+        //GD.Print("Ctrl 被按下，Player 收到信号！");
         GoIntoSlowMode();
     }
 
 	public void OnSpacePressed()
 	{
-		GD.Print("Space 被按下，Player 收到信号！");
+		//GD.Print("Space 被按下，Player 收到信号！");
 		GoIntoDashMode();
 	}
 
 	public void OnMapBorderAreaEntered(Node body, string borderName)
 	{
-		GD.Print("Touch the border");
-		GD.Print(borderName);
+		//GD.Print("Touch the border");
+		//GD.Print(borderName);
 		if (body != this)
 			return;
 
@@ -240,13 +262,25 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    private void UpdateHurtState(double delta)
+    {
+        _hurtTimer += delta;
+        if (_hurtTimer > HurtTime)
+        {
+            _inHurtMode = false;
+            if (_playerItems.ItemUsable("Shield"))
+                _playerAnimation.PlayShield();
+            else
+                _playerAnimation.PlayIdle();
+        }
+    }
     private void UpdateItemCD(double delta)
     {
         foreach (var (x, _) in _playerItems.CurrentItemsCD)
         {
             _playerItems.CurrentItemsCD[x] = Math.Max(_playerItems.CurrentItemsCD[x] - delta, 0);
         }
-        if (!_inDashMode && _playerItems.ItemUsable("Shield"))
+        if (!_inDashMode && !_inHurtMode && _playerItems.ItemUsable("Shield"))
             _playerAnimation.PlayShield();
     }
 
