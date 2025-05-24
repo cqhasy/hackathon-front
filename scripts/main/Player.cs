@@ -1,8 +1,9 @@
+using fiycraft.scripts.main;
 using Godot;
 using System;
 using System.Xml.Serialization;
 
-public partial class Player : Sprite2D
+public partial class Player : Node2D
 {
     private const float MaxAcceleration = 500f;
     private const float MinAcceleration = 30f;
@@ -15,28 +16,58 @@ public partial class Player : Sprite2D
     private MouseMovement _mouseMovement;
     private TimeController _timeController;
     private PlayerStates _playerStates;
+    private PlayerItems _playerItems;
+    private PlayerAnimation _playerAnimation;
 
     public override void _Ready()
     {
         _mouseMovement = GetParent().GetNode<MouseMovement>("MouseMovement");
         _timeController = GetParent().GetNode<TimeController>("TimeController");
         _playerStates = new PlayerStates();
+        _playerItems = new PlayerItems();
+        _playerAnimation = GetNode<PlayerAnimation>("PlayerAnimation");
+        _playerAnimation.PlayShield();
+        _playerAnimation.Rotation = Mathf.Pi / 2;
     }
 
     public override void _Process(double delta)
     {
         VelocityCalculate(delta);
+        UpdateItemCD(delta);
     }
 
     public void OnCtrlPressed()
     {
 
         GD.Print("Ctrl 被按下，Player 收到信号！");
+        GoIntoSlowMode();
     }
+
+    public void OnSpacePressed()
+    {
+        GoIntoDashMode();
+    } 
 
     private void GoIntoSlowMode()
     {
-        //if()
+        if (_playerItems.UseItemIfItUsable("SlowMode"))
+            _timeController.GoIntoSlowMode();
+    }
+
+    private void GoIntoDashMode()
+    {
+        if(_playerItems.UseItemIfItUsable("Dash"))
+        {
+            
+        }    
+    }
+
+    private void UpdateItemCD(double delta)
+    {
+        foreach(var (x,_) in _playerItems.CurrentItemsCD)
+        {
+            _playerItems.CurrentItemsCD[x] = Math.Max(_playerItems.CurrentItemsCD[x] - delta, 0);
+        }
     }
 
     private void VelocityCalculate(double delta)

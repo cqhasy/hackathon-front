@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c60vjm2pk7hg1"
-path="res://.godot/imported/AirCraftGrey.png-1533a3fda452f64912aba1990c179484.ctex"
+uid="uid://5q53qryp5keg"
+path="res://.godot/imported/player_shield.png-32ef1c799cdaaf0079a128575f6f1532.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/flycraft/AirCraftGrey.png"
-dest_files=["res://.godot/imported/AirCraftGrey.png-1533a3fda452f64912aba1990c179484.ctex"]
+source_file="res://assets/flycraft/player_shield.png"
+dest_files=["res://.godot/imported/player_shield.png-32ef1c799cdaaf0079a128575f6f1532.ctex"]
 
 [params]
 
