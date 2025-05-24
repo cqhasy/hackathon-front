@@ -4,22 +4,43 @@
 [ext_resource type="Script" uid="uid://27a3dcb7hlom" path="res://scenes/pause.gd" id="1_r8yp4"]
 
 [node name="pause" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 4.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r8yp4")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
+process_mode = 2
 layout_mode = 0
-offset_right = 1260.0
-offset_bottom = 720.0
+offset_left = -631.0
+offset_top = -362.0
+offset_right = -591.0
+offset_bottom = -322.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 2160.0
 scale = Vector2(0.333, 0.333)
 texture = ExtResource("1_f1d2v")
 
-[node name="continue" type="Button" parent="."]
+[node name="exit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 782.0
+offset_top = 260.0
+offset_right = 1006.0
+offset_bottom = 416.0
+text = "exit"
+
+[node name="continue" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 214.0
 offset_top = 266.0
@@ -27,11 +48,3 @@ offset_right = 418.0
 offset_bottom = 426.0
 text = "continue
 "
-
-[node name="exit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 782.0
-offset_top = 260.0
-offset_right = 1006.0
-offset_bottom = 416.0
-text = "exit"

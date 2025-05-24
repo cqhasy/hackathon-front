@@ -1,9 +1,11 @@
 extends Control
 
 func _ready():
-	get_tree().paused = false
-	$continue.connect("pressed", Callable(self, "_on_continue_pressed"))
-	$exit.connect("pressed", Callable(self, "_on_exit_pressed"))
+	print(111)
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	#get_tree().paused = false
+	$Panel/continue.connect("pressed", Callable(self, "_on_continue_pressed"))
+	$Panel/exit.connect("pressed", Callable(self, "_on_exit_pressed"))
 
 func _on_continue_pressed():
 	get_tree().paused = false
