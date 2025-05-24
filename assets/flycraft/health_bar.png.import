@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l4oql27druj5"
-path="res://.godot/imported/Smoke.png-2a8f9ad430e9a70408790ca76b11380d.ctex"
+uid="uid://bk86b3qkqerlx"
+path="res://.godot/imported/health_bar.png-92118fc0af9399c36c7219143ec3670a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/Smoke.png"
-dest_files=["res://.godot/imported/Smoke.png-2a8f9ad430e9a70408790ca76b11380d.ctex"]
+source_file="res://assets/flycraft/health_bar.png"
+dest_files=["res://.godot/imported/health_bar.png-92118fc0af9399c36c7219143ec3670a.ctex"]
 
 [params]
 

@@ -1,0 +1,88 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://rv8j3laevupd"]
+
+[ext_resource type="Texture2D" uid="uid://bk86b3qkqerlx" path="res://assets/flycraft/health_bar.png" id="1_l7yj6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25jxs"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukt0u"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(64, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4pi0"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(128, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgeyx"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(192, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i48n1"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(256, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usuly"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(320, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft3ph"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(384, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6r1g"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(448, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cgk1"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(512, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghnw5"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(576, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq10f"]
+atlas = ExtResource("1_l7yj6")
+region = Rect2(640, 0, 64, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25jxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukt0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4pi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgeyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i48n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usuly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft3ph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6r1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cgk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghnw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq10f")
+}],
+"loop": true,
+"name": &"Health",
+"speed": 5.0
+}]
