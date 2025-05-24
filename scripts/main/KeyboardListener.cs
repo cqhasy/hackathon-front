@@ -16,7 +16,7 @@ public partial class KeyboardListener : Node
 
     public override void _Process(double delta)
     {
-        // 检测Ctrl按下
+        // 检测Ctrl按下  
         if (Input.IsKeyPressed(Key.Ctrl))
         {
             EmitSignal(SignalName.CtrlPressed);

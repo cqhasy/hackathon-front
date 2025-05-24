@@ -1,8 +1,21 @@
-[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://dutvehy2oiivi"]
+[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://dutvehy2oiivi"]
 
 [ext_resource type="Texture2D" uid="uid://8km2wewacmyk" path="res://assets/flycraft/player_idle.png" id="1_02747"]
+[ext_resource type="Texture2D" uid="uid://cafnmscsmm4kj" path="res://assets/flycraft/player_cast.png" id="1_g57qp"]
 [ext_resource type="Texture2D" uid="uid://gprlejv0kurl" path="res://assets/flycraft/player_hurt.png" id="1_m04ra"]
 [ext_resource type="Texture2D" uid="uid://5q53qryp5keg" path="res://assets/flycraft/player_shield.png" id="3_jrp8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i0e3"]
+atlas = ExtResource("1_g57qp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k1lt"]
+atlas = ExtResource("1_g57qp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jmas"]
+atlas = ExtResource("1_g57qp")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_783pq"]
 atlas = ExtResource("1_m04ra")
@@ -110,6 +123,20 @@ region = Rect2(160, 0, 32, 32)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i0e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k1lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jmas")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_783pq")

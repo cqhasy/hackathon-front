@@ -22,4 +22,9 @@ public partial class PlayerAnimation : AnimatedSprite2D
     {
         Play("shield");
     }
+
+    public void PlayDash()
+    {
+        Play("dash");
+    }
 }

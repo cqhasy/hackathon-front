@@ -17,12 +17,16 @@ namespace fiycraft.scripts.main
 
         public Dictionary<string, bool> usableItems = new Dictionary<string, bool>
         {
-            { "dash", true },
+            { "Dash", true },
+            { "SlowMode", true },
+            { "Shield", true },
         };
         public Dictionary<string, double> CurrentItemsCD;
         public Dictionary<string, double> ItemsCD = new Dictionary<string, double>
         {
-            { "dash", 5 },
+            { "Dash", 5 },
+            { "SlowMode", 5 },
+            { "Shield", 5 },
         };
 
         public bool ItemUsable(string item)
