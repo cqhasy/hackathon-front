@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://yj0c4swy8xq7"
+path="res://.godot/imported/上海アリス幻樂団 - 聖徳伝説　～　True Administrator.mp3-1b22561b5c567be1434aab47a9fa8896.mp3str"
+
+[deps]
+
+source_file="res://assets/music/上海アリス幻樂団 - 聖徳伝説　～　True Administrator.mp3"
+dest_files=["res://.godot/imported/上海アリス幻樂団 - 聖徳伝説　～　True Administrator.mp3-1b22561b5c567be1434aab47a9fa8896.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
