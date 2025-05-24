@@ -1,3 +1,120 @@
-[gd_scene format=3 uid="uid://ynrphdg7m08l"]
+[gd_scene load_steps=7 format=3 uid="uid://ynrphdg7m08l"]
 
-[node name="store" type="Node2D"]
+[ext_resource type="Script" uid="uid://dmx1hpskjnsbl" path="res://scripts/store/store.gd" id="1_vb4ln"]
+[ext_resource type="Script" uid="uid://dpeo5k7kwy6r2" path="res://scenes/good_1.gd" id="2_tmp5q"]
+[ext_resource type="Script" uid="uid://c3sck512q2kcp" path="res://scenes/good_2.gd" id="3_phafb"]
+[ext_resource type="Script" uid="uid://yqio8me56k2n" path="res://scenes/accept_dialog.gd" id="5_ipyd8"]
+[ext_resource type="Script" uid="uid://c45mpdxm1bs53" path="res://scenes/exit_button.gd" id="6_3n2kn"]
+
+[sub_resource type="GDScript" id="GDScript_gf6f2"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="store" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 4.0
+offset_right = -12.0
+offset_bottom = 4.0
+scale = Vector2(1.11921, 1.11933)
+script = ExtResource("1_vb4ln")
+
+[node name="StoreBackground" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 10.7218
+offset_top = -1.78679
+offset_right = 50.7218
+offset_bottom = 38.2132
+scale = Vector2(28.5317, 16.0709)
+
+[node name="StoreTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 418.736
+offset_top = 7.09262
+offset_right = 458.736
+offset_bottom = 30.0926
+scale = Vector2(9.40733, 6.00409)
+text = "商店"
+
+[node name="GoodsContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 245.709
+offset_top = 224.241
+offset_right = 403.709
+offset_bottom = 264.241
+scale = Vector2(4.32404, 4.30105)
+
+[node name="good1" type="Button" parent="GoodsContainer"]
+layout_mode = 2
+offset_left = -35.0
+offset_top = 1.5
+offset_right = 15.0
+offset_bottom = 32.5
+scale = Vector2(1.02964, 0.602187)
+text = "商品1
+"
+script = ExtResource("2_tmp5q")
+
+[node name="good2" type="Button" parent="GoodsContainer"]
+layout_mode = 2
+offset_left = 45.0
+offset_top = 1.5
+offset_right = 95.0
+offset_bottom = 32.5
+scale = Vector2(0.984976, 0.618356)
+text = "商品2"
+script = ExtResource("3_phafb")
+
+[node name="good3" type="Button" parent="GoodsContainer"]
+layout_mode = 2
+offset_left = 125.0
+offset_top = 1.5
+offset_right = 175.0
+offset_bottom = 32.5
+scale = Vector2(1.0257, 0.606356)
+text = "商品3"
+script = SubResource("GDScript_gf6f2")
+
+[node name="ConfirmDialog" type="AcceptDialog" parent="."]
+initial_position = 1
+size = Vector2i(250, 100)
+visible = true
+script = ExtResource("5_ipyd8")
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 936.463
+offset_top = 7.09262
+offset_right = 981.463
+offset_bottom = 38.0926
+scale = Vector2(4.66251, 3.5322)
+text = "退出 "
+script = ExtResource("6_3n2kn")
+
+[node name="Coin" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.1893
+offset_top = 1.78679
+offset_right = 91.1893
+offset_bottom = 24.7868
+scale = Vector2(2.34536, 2.19711)
+
+[node name="BuyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 457.465
+offset_top = 459.203
+offset_right = 507.465
+offset_bottom = 490.203
+scale = Vector2(5.12558, 2.67464)
+text = "购买"
