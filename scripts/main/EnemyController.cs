@@ -73,4 +73,20 @@ public partial class EnemyController : Node2D
         _enemyInstances.Remove(Id);
         _enemyData.DestroyEnemy(Id);
     }
+    public EnemyAI FindNearestEnemy(Vector2 position, float maxRange)
+    {
+        EnemyAI nearest = null;
+        float minDist = maxRange;
+        foreach (var enemy in _enemyInstances.Values)
+        {
+            if (enemy == null || !enemy.IsInsideTree()) continue;
+            float dist = enemy.GlobalPosition.DistanceTo(position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearest = enemy;
+            }
+        }
+        return nearest;
+    }
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djwenbp1ojsoi"
-path="res://.godot/imported/Aircraft3.png-9b9708dd5892ae2eaf0dc5573c38bda8.ctex"
+uid="uid://dk5bf2pas35va"
+path="res://.godot/imported/target.png-8683cabf362d0fbd86abe3245116d8d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/store/Aircraft3.png"
-dest_files=["res://.godot/imported/Aircraft3.png-9b9708dd5892ae2eaf0dc5573c38bda8.ctex"]
+source_file="res://assets/enemy/target.png"
+dest_files=["res://.godot/imported/target.png-8683cabf362d0fbd86abe3245116d8d0.ctex"]
 
 [params]
 

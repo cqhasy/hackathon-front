@@ -27,4 +27,9 @@ public partial class PlayerAnimation : AnimatedSprite2D
     {
         Play("dash");
     }
+
+    public void PlayExplode()
+    {
+        Play("explode");
+    }
 }

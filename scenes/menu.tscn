@@ -1,24 +1,26 @@
 [gd_scene load_steps=3 format=3 uid="uid://q17glujluohw"]
 
-[ext_resource type="Script" path="res://scripts/menu/menu.gd" id="1_vjb58"]
-[ext_resource type="Texture2D" uid="uid://b4ewawue8n6r2" path="res://assets/background/title_bk01.png" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://dp8fquey387vh" path="res://scripts/menu/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://biu5os5grphsv" path="res://assets/background/开屏页.jpg" id="2_vjb58"]
 
 [node name="menu" type="Node2D"]
 script = ExtResource("1_vjb58")
 
-[node name="TitleBk01" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
-texture = ExtResource("1_yqeox")
+[node name="开屏页" type="Sprite2D" parent="."]
+position = Vector2(641, 361)
+scale = Vector2(0.61, 0.61)
+texture = ExtResource("2_vjb58")
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = 1.0
 offset_right = 1280.0
-offset_bottom = 23.0
+offset_bottom = 199.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "1111"
+theme_override_colors/font_color = Color(0, 0.203922, 0.470588, 1)
+theme_override_font_sizes/font_size = 130
+text = "Space Defender"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -51,6 +53,16 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "start
 "
+
+[node name="LifeRecover" type="Label" parent="."]
+offset_left = 2946.67
+offset_top = -1233.34
+offset_right = 3528.67
+offset_bottom = -1013.34
+theme_override_font_sizes/font_size = 150
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="text_changed" from="NameInput/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgm7ddl5m5wst"
-path="res://.godot/imported/AirCraftGrey.png-e62b200cd1359ffb9d5331ce52611091.ctex"
+uid="uid://biu5os5grphsv"
+path="res://.godot/imported/开屏页.jpg-66eebcf0e4678b193c17ebd856d41d62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/store/AirCraftGrey.png"
-dest_files=["res://.godot/imported/AirCraftGrey.png-e62b200cd1359ffb9d5331ce52611091.ctex"]
+source_file="res://assets/background/开屏页.jpg"
+dest_files=["res://.godot/imported/开屏页.jpg-66eebcf0e4678b193c17ebd856d41d62.ctex"]
 
 [params]
 

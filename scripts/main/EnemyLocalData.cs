@@ -26,16 +26,33 @@ public class LocalEnemyData : IEnemyData
         }
     }
 
+    private Vector2 GetRandomPositionWithDistance(Vector2 playerPos, float minDistance)
+    {
+        Vector2 pos;
+        int tryCount = 0;
+        do
+        {
+            pos = new Vector2(
+                (float)GD.RandRange(0, _borderWidth),
+                (float)GD.RandRange(0, _borderHeight)
+            );
+            tryCount++;
+            // 防止极端情况下死循环
+            if (tryCount > 100) break;
+        } while (pos.DistanceTo(playerPos) < minDistance);
+        return pos;
+    }
+
     public void Update(float delta, Vector2 playerPos)
     {
-        // 保证敌人数为20
         while (Enemies.Count < 20)
         {
             int id = NextEnemyId;
+            Vector2 pos = GetRandomPositionWithDistance(playerPos, 400f); // 400为最小间隔
             Enemies[id] = new EnemyInfo
             {
                 Id = id,
-                Position = new Vector2((float)GD.RandRange(0, _borderWidth), (float)GD.RandRange(0, _borderHeight)),
+                Position = pos,
                 Direction = Vector2.Right,
                 State = EnemyState.Wander,
                 FireCooldown = 0,
@@ -86,13 +103,13 @@ public class LocalEnemyData : IEnemyData
             enemy.Position += enemy.Direction * speed * delta;
 
             // 边界穿越
-            if (enemy.Position.X < 0)
+            if (enemy.Position.X < -50)
                 enemy.Position = new Vector2(_borderWidth, enemy.Position.Y);
-            if (enemy.Position.X > _borderWidth)
+            if (enemy.Position.X > _borderWidth + 50)
                 enemy.Position = new Vector2(0, enemy.Position.Y);
-            if (enemy.Position.Y < 0)
+            if (enemy.Position.Y < -50)
                 enemy.Position = new Vector2(enemy.Position.X, _borderHeight);
-            if (enemy.Position.Y > _borderHeight)
+            if (enemy.Position.Y > _borderHeight + 50)
                 enemy.Position = new Vector2(enemy.Position.X, 0);
         }
     }
