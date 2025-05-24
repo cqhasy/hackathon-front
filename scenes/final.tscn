@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtbybpsumol86"]
+[gd_scene load_steps=6 format=3 uid="uid://bl22uh1hdgu0m"]
 
 [ext_resource type="Script" uid="uid://c26hvhbt6neux" path="res://scripts/final/control.gd" id="1_op64y"]
 [ext_resource type="Texture2D" uid="uid://cjyxo40snat8l" path="res://assets/backend/MainBackground.jpg" id="2_gh6hq"]
-[ext_resource type="Texture2D" uid="uid://ck0qcjb57sq21" path="res://assets/backend/title.jpg" id="3_y0die"]
 
 [sub_resource type="FontFile" id="FontFile_fj5cn"]
 cache/0/16/0/ascent = 0.0
@@ -20,6 +19,11 @@ cache/0/80/0/descent = 0.0
 cache/0/80/0/underline_position = 0.0
 cache/0/80/0/underline_thickness = 0.0
 cache/0/80/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
 
 [sub_resource type="FontFile" id="FontFile_iy58a"]
 cache/0/16/0/ascent = 0.0
@@ -80,42 +84,34 @@ offset_bottom = 2160.0
 scale = Vector2(0.334, 0.334)
 texture = ExtResource("2_gh6hq")
 
-[node name="TextureRect" type="TextureRect" parent="backend"]
-layout_mode = 0
-offset_left = 1339.0
-offset_top = 227.0
-offset_right = 2556.0
-offset_bottom = 816.0
-texture = ExtResource("3_y0die")
-
 [node name="ScoreLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 238.0
-offset_top = 325.0
-offset_right = 668.0
-offset_bottom = 482.0
+offset_left = 244.0
+offset_top = 293.0
+offset_right = 1096.0
+offset_bottom = 398.0
 theme_override_fonts/font = SubResource("FontFile_fj5cn")
-theme_override_font_sizes/font_size = 40
-text = "your   score:"
+theme_override_font_sizes/font_size = 60
+text = "你的分数是："
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.031
-anchor_bottom = 0.028
-offset_left = 467.0
-offset_top = 413.0
-offset_right = 869.32
-offset_bottom = 713.84
-
-[node name="again" type="Button" parent="VBoxContainer"]
+[node name="again" type="Button" parent="."]
 layout_mode = 2
+offset_left = 142.0
+offset_top = 440.0
+offset_right = 544.0
+offset_bottom = 515.0
 theme_override_fonts/font = SubResource("FontFile_iy58a")
 theme_override_font_sizes/font_size = 50
-text = "try again"
+text = "再试一次"
 
-[node name="exit" type="Button" parent="VBoxContainer"]
+[node name="exit" type="Button" parent="."]
 layout_mode = 2
+offset_left = 747.0
+offset_top = 440.0
+offset_right = 1149.0
+offset_bottom = 515.0
 theme_override_fonts/font = SubResource("FontFile_6a6wx")
 theme_override_font_sizes/font_size = 50
-text = "exit"
+text = "回到主页面"

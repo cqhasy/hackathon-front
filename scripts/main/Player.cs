@@ -33,7 +33,6 @@ public partial class Player : CharacterBody2D
 
     private MouseMovement _mouseMovement;
     private TimeController _timeController;
-    private PlayerStates _playerStates;
     private PlayerItems _playerItems;
     private PlayerAnimation _playerAnimation;
     private Node2D _borderArea;
@@ -50,7 +49,6 @@ public partial class Player : CharacterBody2D
     {
         _mouseMovement = GetParent().GetNode<MouseMovement>("MouseMovement");
         _timeController = GetParent().GetNode<TimeController>("TimeController");
-        _playerStates = new PlayerStates();
         _playerItems = new PlayerItems();
         _playerAnimation = GetNode<PlayerAnimation>("PlayerAnimation");
         _playerAnimation.PlayShield();
@@ -72,7 +70,7 @@ public partial class Player : CharacterBody2D
         _enemyController = GetParent().GetNode<EnemyController>("EnemyGroup");
         _arrow = GetNode<Sprite2D>("Arrow");
         _target = GetParent().GetNode<AnimatedSprite2D>("Target");
-        _target.Visible = _playerStates.UseActiveTrace;
+        _target.Visible = PlayerStates.Instance.UseActiveTrace;
         var camera = GetParent().GetNode<Camera2D>("Camera2D");
         _labels =
         [
@@ -104,7 +102,7 @@ public partial class Player : CharacterBody2D
         }
         DrawArrow();
         DoHealthRecover(delta);
-        if (_playerStates.UseActiveTrace)
+        if (PlayerStates.Instance.UseActiveTrace)
             DrawTarget();
         UpdateItemInfo(delta);
     }
@@ -124,7 +122,7 @@ public partial class Player : CharacterBody2D
                 ? "充能完成"
                 : _playerItems.CurrentItemsCD["SlowMode"].ToString("F3");
         _labels[3].Text =
-            _playerStates.Health == _playerStates.MaxHealth
+            PlayerStates.Instance.Health == PlayerStates.Instance.MaxHealth
                 ? "无需恢复"
                 : (1 - _recoverTimer).ToString("F3");
         _passedTime += delta;
@@ -169,10 +167,10 @@ public partial class Player : CharacterBody2D
     {
         GD.Print("On hit enemy");
         _enemyController.PlayerDestroyEnemy(enemyId);
-        _playerStates.DestroyedEnemies++;
+        PlayerStates.Instance.DestroyedEnemies++;
         if (!_playerItems.ItemUsable("Dash"))
             _playerItems.CurrentItemsCD["Dash"] = 0;
-        //GD.Print(_playerStates.DestroyedEnemies);
+        //GD.Print(PlayerStates.Instance.DestroyedEnemies);
     }
 
     public void OnHitByBullet()
@@ -229,7 +227,7 @@ public partial class Player : CharacterBody2D
 
     private void UpdateHealthBar()
     {
-        _healthBar.Frame = (int)_playerStates.Health / 10;
+        _healthBar.Frame = (int)PlayerStates.Instance.Health / 10;
     }
 
     private void DoHealthRecover(double delta)
@@ -237,17 +235,17 @@ public partial class Player : CharacterBody2D
         _recoverTimer += (float)delta;
         if (_recoverTimer >= 1f)
         {
-            if (_playerStates == null)
+            if (PlayerStates.Instance == null)
                 return;
             // 假设有最大生命值 MaxHealth
             float maxHealth = 100f;
-            if (_playerStates.Health < maxHealth)
+            if (PlayerStates.Instance.Health < maxHealth)
             {
-                _playerStates.Health = Math.Min(
-                    _playerStates.Health + _playerStates.HPRegenerationRate,
+                PlayerStates.Instance.Health = Math.Min(
+                    PlayerStates.Instance.Health + PlayerStates.Instance.HPRegenerationRate,
                     maxHealth
                 );
-                //GD.Print($"HP recovered: {_playerStates.Health}");
+                //GD.Print($"HP recovered: {PlayerStates.Instance.Health}");
                 _recoverTimer = 0f;
                 UpdateHealthBar();
             }
@@ -256,9 +254,9 @@ public partial class Player : CharacterBody2D
 
     private void DoHealthDecrease()
     {
-        _playerStates.Health = Math.Max(0, _playerStates.Health - 30);
+        PlayerStates.Instance.Health = Math.Max(0, PlayerStates.Instance.Health - 30);
         UpdateHealthBar();
-        if (_playerStates.Health <= 0f)
+        if (PlayerStates.Instance.Health <= 0f)
         {
             DoDeath();
         }
@@ -322,7 +320,7 @@ public partial class Player : CharacterBody2D
             _inDashMode = true;
             if (_lastUsableMouseMovement != Vector2.Zero)
             {
-                if (_playerStates.UseActiveTrace && nearestEnemy != null)
+                if (PlayerStates.Instance.UseActiveTrace && nearestEnemy != null)
                     _velocity =
                         (nearestEnemy.GlobalPosition - GlobalPosition).Normalized() * DashVelocity;
                 else
@@ -359,7 +357,8 @@ public partial class Player : CharacterBody2D
         _deathTimer += delta;
         if (_deathTimer > DeathTime)
         {
-            // TODO 跳转结算页面！！
+            PlayerStates.Instance.Score = PlayerStates.Instance.DestroyedEnemies * 10;
+            GetTree().ChangeSceneToFile("res://scenes/final.tscn");
         }
     }
 
@@ -418,8 +417,8 @@ public partial class Player : CharacterBody2D
             _acceleration == Vector2.Zero ? _lastUsableMouseMovement : _acceleration;
         _velocity += _acceleration * (float)delta * 10f;
 
-        if (_velocity.Length() > _playerStates.MaxSpeed)
-            _velocity = _velocity.Normalized() * _playerStates.MaxSpeed;
+        if (_velocity.Length() > PlayerStates.Instance.MaxSpeed)
+            _velocity = _velocity.Normalized() * PlayerStates.Instance.MaxSpeed;
 
         Position += _velocity * (float)delta;
 

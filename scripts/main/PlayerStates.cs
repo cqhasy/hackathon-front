@@ -1,10 +1,11 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class PlayerStates
+public partial class PlayerStates : Node
 {
     public string UserName { get; set; } = "";
     public float MaxHealth { get; set; } = 100;
@@ -15,4 +16,11 @@ public class PlayerStates
     public int CurrentMoney { get; set; } = 0;
     public int DestroyedEnemies { get; set; } = 0;
     public bool UseActiveTrace { get; set; } = true;
+    public static PlayerStates Instance { get; private set; }
+
+    public override void _Ready()
+    {
+        Instance = this;
+    }
+
 }

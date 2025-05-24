@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="fiycraft"
-run/main_scene="uid://q17glujluohw"
+run/main_scene="uid://c41wo4oad8mje"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerStates="*res://prefbs/player_states.tscn"
 
 [display]
 

@@ -25,5 +25,14 @@ public partial class KeyboardListener : Node
         {
             EmitSignal(SignalName.SpacePressed);
         }
+        if(Input.IsKeyPressed(Key.Escape))
+        {
+            // 暂停当前场景
+            GetTree().Paused = true;
+            // 加载并切换到暂停场景（以弹窗方式，不影响主场景）
+            var pauseScene = GD.Load<PackedScene>("res://scenes/pause.tscn");
+            var pauseInstance = pauseScene.Instantiate();
+            GetTree().CurrentScene.AddChild(pauseInstance);
+        }
     }
 }

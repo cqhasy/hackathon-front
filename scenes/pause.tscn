@@ -17,34 +17,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r8yp4")
 
-[node name="Panel" type="Panel" parent="."]
-process_mode = 2
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = -631.0
 offset_top = -362.0
-offset_right = -591.0
-offset_bottom = -322.0
-
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 0
-offset_right = 3840.0
-offset_bottom = 2160.0
+offset_right = 3209.0
+offset_bottom = 1798.0
 scale = Vector2(0.333, 0.333)
 texture = ExtResource("1_f1d2v")
 
-[node name="exit" type="Button" parent="Panel"]
+[node name="continue" type="Button" parent="."]
 layout_mode = 0
-offset_left = 782.0
-offset_top = 260.0
-offset_right = 1006.0
-offset_bottom = 416.0
-text = "exit"
+offset_left = -418.0
+offset_top = -86.0
+offset_right = -214.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 40
+text = "continue"
 
-[node name="continue" type="Button" parent="Panel"]
+[node name="exit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 266.0
-offset_right = 418.0
-offset_bottom = 426.0
-text = "continue
-"
+offset_left = 151.0
+offset_top = -86.0
+offset_right = 375.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 40
+text = "exit"
