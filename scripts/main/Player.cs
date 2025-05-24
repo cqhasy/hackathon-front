@@ -136,22 +136,22 @@ public partial class Player : CharacterBody2D
 		if (body != this)
 			return;
 
-        switch (borderName)
-        {
-            case "Left":
-                Position = new Vector2(MapWidth, Position.Y);
-                break;
-            case "Right":
-                Position = new Vector2(0, Position.Y);
-                break;
-            case "Top":
-                Position = new Vector2(Position.X, MapHeight);
-                break;
-            case "Bottom":
-                Position = new Vector2(Position.X, 0);
-                break;
-        }
-    }
+		switch (borderName)
+		{
+			case "Left":
+				Position = new Vector2(MapWidth, Position.Y);
+				break;
+			case "Right":
+				Position = new Vector2(0, Position.Y);
+				break;
+			case "Top":
+				Position = new Vector2(Position.X, MapHeight);
+				break;
+			case "Bottom":
+				Position = new Vector2(Position.X, 0);
+				break;
+		}
+	}
 
     private void UpdateHealthBar()
     {
