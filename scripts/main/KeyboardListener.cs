@@ -1,10 +1,14 @@
-using Godot;
 using System;
+using Godot;
 
 public partial class KeyboardListener : Node
 {
     [Signal]
     public delegate void CtrlPressedEventHandler();
+
+    [Signal]
+    public delegate void SpacePressedEventHandler();
+
     public override void _Ready()
     {
         SetProcess(true);
@@ -17,6 +21,9 @@ public partial class KeyboardListener : Node
         {
             EmitSignal(SignalName.CtrlPressed);
         }
+        if (Input.IsKeyPressed(Key.Space))
+        {
+            EmitSignal(SignalName.SpacePressed);
+        }
     }
-
 }

@@ -16,14 +16,6 @@ public partial class TimeController : Node
 
     public override void _Process(double delta)
     {
-        // 检测Ctrl按下
-        if (Input.IsKeyPressed(Key.Ctrl) && !isBulletTime)
-        {
-            isBulletTime = true;
-            bulletTimeTimer = 0f;
-            targetTimeScale = 0.1f;
-        }
-
         if (isBulletTime)
         {
             bulletTimeTimer += (float)delta;
@@ -45,5 +37,12 @@ public partial class TimeController : Node
                 Engine.TimeScale = Mathf.Lerp(Engine.TimeScale, targetTimeScale, (float)delta * timeScaleLerpSpeed);
             }
         }
+    }
+
+    public void GoIntoSlowMode()
+    {
+        isBulletTime = true;
+        bulletTimeTimer = 0f;
+        targetTimeScale = 0.1f;
     }
 }
