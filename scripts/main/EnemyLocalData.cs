@@ -45,7 +45,7 @@ public class LocalEnemyData : IEnemyData
 
     public void Update(float delta, Vector2 playerPos)
     {
-        while (Enemies.Count < 20)
+        while (Enemies.Count < 10)
         {
             int id = NextEnemyId;
             Vector2 pos = GetRandomPositionWithDistance(playerPos, 400f); // 400为最小间隔

@@ -24,9 +24,9 @@ namespace fiycraft.scripts.main
         public Dictionary<string, double> CurrentItemsCD;
         public Dictionary<string, double> ItemsCD = new Dictionary<string, double>
         {
-            { "Dash", 5 },
-            { "SlowMode", 5 },
-            { "Shield", 5 },
+            { "Dash", 7 },
+            { "SlowMode", 7 },
+            { "Shield", 7 },
         };
 
         public bool ItemUsable(string item)

@@ -7,17 +7,17 @@ extends Control
 @onready var exit_button = $ExitButton
 
 var selected_item = null
-var player_coins = 300  
-
+var player_coins = PlayerStates.CurrentMoney;
+var index = null
 
 func _ready():
 	update_coin_label()
 	
 	var descriptions = [
-		"我是第一条",
-		"我是第二条",
-		"我是第三条",
-		"我是第四条"
+		"启用主动追踪",
+		"加快护盾生成",
+		"增加生命上限",
+		"减少子弹时间冷却时间"
 	]
 
 	var i = 0 
@@ -35,7 +35,7 @@ func _ready():
 		
 		
 		
-		item_button.connect("pressed",Callable(self,"_on_item_pressed").bind(item_button))
+		item_button.connect("pressed",Callable(self,"_on_item_pressed").bind(item_button,i))
 		item_button.connect("mouse_entered",Callable(self,"_on_mouse_entered").bind(item_button,j))
 		item_button.connect("mouse_exited",Callable(self,"_on_mouse_exited").bind(item_button,j))
 
@@ -58,10 +58,12 @@ func _on_mouse_exited(item_button,index):
 	
 
 func update_coin_label():
+	PlayerStates.CurrentMoney = player_coins
 	coin_label.text = "金币：%d" % player_coins
 
-func _on_item_pressed(item_button):
-	selected_item = item_button
+func _on_item_pressed(item_button,i):
+	selected_item = item_button 
+	index = i
 	var description = selected_item.get_meta("description")
 	var price = selected_item.get_meta("price")
 	Text_box.text = description
@@ -76,10 +78,21 @@ func _on_purchase_confirmed():
 		var Price = selected_item.get_node("Price")
 		if player_coins >= price:
 			player_coins -= price
+			index-=1
+			match index:
+				0:
+					PlayerStates.UseActiveTrace = true
+				1:
+					PlayerStates.ShieldCostTime = max(PlayerStates.ShieldCostTime - 1, 1)
+				2:
+					PlayerStates.MaxHealth = PlayerStates.MaxHealth + 10
+				3:
+					PlayerStates.SlowDownCostTime = max(PlayerStates.SlowDownCostTime - 1,1)
 			update_coin_label()
-
 			
 			Price.text = "已经售出"
+			Text_box.text = ""
+			
 			selected_item.disabled = true
 			confirm_dialog.dialog_text = "购买成功：%s" %selected_item.text
 			confirm_dialog.popup_centered()
@@ -95,4 +108,5 @@ func _on_button_mouse_exited(button):
 	button.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _on_exit_button_pressed():
-	queue_free()
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	

@@ -15,7 +15,7 @@ public partial class Player : CharacterBody2D
     private const float DashTime = 0.4f;
     private const float HurtTime = 0.4f;
     private const float DeathTime = 1f;
-    private const float TotalTime = 120;
+    private const float TotalTime = 20;
 
     private Vector2 _velocity = Vector2.Zero;
     private Vector2 _acceleration = Vector2.Zero;
@@ -78,8 +78,15 @@ public partial class Player : CharacterBody2D
                 camera.GetNode<Label>(x)
             ),
         ];
+        InitPlayerStates();
     }
-
+    private void InitPlayerStates()
+    {
+        PlayerStates.Instance.Health = 100;
+        _playerItems.ItemsCD["SlowMode"] = PlayerStates.Instance.SlowDownCostTime;
+        _playerItems.ItemsCD["Shield"] = PlayerStates.Instance.ShieldCostTime;
+        _target.Visible = PlayerStates.Instance.UseActiveTrace;
+    }
     public override void _Process(double delta)
     {
         if (_inDeathMode)
@@ -130,12 +137,20 @@ public partial class Player : CharacterBody2D
         int minutes = (int)(leftTime / 60);
         int seconds = (int)(leftTime % 60);
         _labels[4].Text = $"{minutes:D2}:{seconds:D2}";
+        if(leftTime == 0)
+        {
+            _mouseMovement.ToNormalMode();
+            PlayerStates.Instance.CurrentMoney = (int)((float)PlayerStates.Instance.DestroyedEnemies * 17.3) + 50;
+            GetTree().ChangeSceneToFile("res://scenes/store.tscn");
+        }
     }
 
     private void DrawTarget()
     {
         float searchRange = 500f;
         EnemyAI nearestEnemy = _enemyController.FindNearestEnemy(GlobalPosition, searchRange);
+        GD.Print($" enemy: {nearestEnemy is not null}");
+
         if (nearestEnemy is not null)
         {
             _target.GlobalPosition = nearestEnemy.Position;
@@ -227,7 +242,7 @@ public partial class Player : CharacterBody2D
 
     private void UpdateHealthBar()
     {
-        _healthBar.Frame = (int)PlayerStates.Instance.Health / 10;
+        _healthBar.Frame = (int)(PlayerStates.Instance.Health / PlayerStates.Instance.MaxHealth * 10);
     }
 
     private void DoHealthRecover(double delta)
@@ -237,13 +252,11 @@ public partial class Player : CharacterBody2D
         {
             if (PlayerStates.Instance == null)
                 return;
-            // 假设有最大生命值 MaxHealth
-            float maxHealth = 100f;
-            if (PlayerStates.Instance.Health < maxHealth)
+            if (PlayerStates.Instance.Health < PlayerStates.Instance.MaxHealth)
             {
                 PlayerStates.Instance.Health = Math.Min(
                     PlayerStates.Instance.Health + PlayerStates.Instance.HPRegenerationRate,
-                    maxHealth
+                    PlayerStates.Instance.MaxHealth
                 );
                 //GD.Print($"HP recovered: {PlayerStates.Instance.Health}");
                 _recoverTimer = 0f;

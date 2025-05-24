@@ -13,6 +13,7 @@ func _ready():
 func _on_line_edit_text_changed(new_text):
 	# 非空时启用按钮，空时禁用按钮
 	$Button.disabled = new_text.strip_edges() == ""
+	PlayerStates.UserName = new_text.strip_edges()
 
 func _on_Button_pressed():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
