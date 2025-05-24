@@ -11,5 +11,15 @@ config_version=5
 [application]
 
 config/name="fiycraft"
+run/main_scene="uid://c41wo4oad8mje"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[dotnet]
+
+project/assembly_name="fiycraft"
