@@ -89,4 +89,9 @@ public partial class EnemyController : Node2D
         }
         return nearest;
     }
+
+    public void SetEnemyCount(int count)
+    {
+        _enemyData.SetEnemyCount(count);
+    }
 }

@@ -27,7 +27,6 @@ public partial class EnemyAI : Area2D
     public override void _Ready()
     {
         BodyEntered += OnEnemyHited;
-        GD.Print("EventSetted");
     }
 
     public override void _Process(double delta)

@@ -10,4 +10,5 @@ public interface IEnemyData
     public void Update(float delta, Vector2 playerPos);
     public void DestroyEnemy(int Id);
     public Dictionary<int, EnemyInfo> Enemies { get; }
+    public void SetEnemyCount(int count);
 }

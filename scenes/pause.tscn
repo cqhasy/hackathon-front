@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c57bwki4mdiy0"]
 
 [ext_resource type="Texture2D" uid="uid://cjyxo40snat8l" path="res://assets/backend/MainBackground.jpg" id="1_f1d2v"]
-[ext_resource type="Script" uid="uid://27a3dcb7hlom" path="res://scenes/pause.gd" id="1_r8yp4"]
+[ext_resource type="Script" uid="uid://27a3dcb7hlom" path="res://scripts/pause/pause.gd" id="1_r8yp4"]
 
 [node name="pause" type="Control"]
 process_mode = 2

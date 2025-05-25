@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public partial class PlayerStates : Node
 {
+    public int level = 0;
     public string UserName { get; set; } = "";
     public float MaxHealth { get; set; } = 100;
     public float Health { get; set; } = 100;
@@ -17,7 +18,7 @@ public partial class PlayerStates : Node
     public int Score { get; set; } = 0;
     public int CurrentMoney { get; set; } = 100;
     public int DestroyedEnemies { get; set; } = 0;
-    public bool UseActiveTrace { get; set; } = true;
+    public bool UseActiveTrace { get; set; } = false;
     public static PlayerStates Instance { get; private set; }
 
     public override void _Ready()

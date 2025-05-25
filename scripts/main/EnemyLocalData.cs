@@ -8,6 +8,7 @@ public class LocalEnemyData : IEnemyData
     private readonly float _borderHeight = 2160;
     public int NextEnemyId => _enemyId++;
     private int _enemyId = 0;
+    private int _enemyCount = 10;
     public Dictionary<int, EnemyInfo> Enemies { get; private set; } = [];
 
     public LocalEnemyData()
@@ -45,7 +46,7 @@ public class LocalEnemyData : IEnemyData
 
     public void Update(float delta, Vector2 playerPos)
     {
-        while (Enemies.Count < 10)
+        while (Enemies.Count < _enemyCount)
         {
             int id = NextEnemyId;
             Vector2 pos = GetRandomPositionWithDistance(playerPos, 400f); // 400为最小间隔
@@ -127,6 +128,10 @@ public class LocalEnemyData : IEnemyData
         if(!Enemies.ContainsKey(Id))
             { return; }
         Enemies.Remove(Id);
+    }
+    public void SetEnemyCount(int count)
+    {
+        _enemyCount = count;
     }
 }
 

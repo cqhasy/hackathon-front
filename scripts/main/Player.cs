@@ -74,7 +74,7 @@ public partial class Player : CharacterBody2D
         var camera = GetParent().GetNode<Camera2D>("Camera2D");
         _labels =
         [
-            .. new List<String>(["Dash", "Shield", "SlowTime", "LifeRecover", "Time"]).Select(x =>
+            .. new List<String>(["Dash", "Shield", "SlowTime", "LifeRecover", "Time", "Level"]).Select(x =>
                 camera.GetNode<Label>(x)
             ),
         ];
@@ -86,6 +86,7 @@ public partial class Player : CharacterBody2D
         _playerItems.ItemsCD["SlowMode"] = PlayerStates.Instance.SlowDownCostTime;
         _playerItems.ItemsCD["Shield"] = PlayerStates.Instance.ShieldCostTime;
         _target.Visible = PlayerStates.Instance.UseActiveTrace;
+        _enemyController.SetEnemyCount(PlayerStates.Instance.level++ * 3 + 10);
     }
     public override void _Process(double delta)
     {
@@ -137,7 +138,8 @@ public partial class Player : CharacterBody2D
         int minutes = (int)(leftTime / 60);
         int seconds = (int)(leftTime % 60);
         _labels[4].Text = $"{minutes:D2}:{seconds:D2}";
-        if(leftTime == 0)
+        _labels[5].Text = $"第{PlayerStates.Instance.level}关";
+        if (leftTime == 0)
         {
             _mouseMovement.ToNormalMode();
             PlayerStates.Instance.CurrentMoney = (int)((float)PlayerStates.Instance.DestroyedEnemies * 17.3) + 50;
@@ -181,6 +183,7 @@ public partial class Player : CharacterBody2D
     public void OnHitEnemy(int enemyId)
     {
         GD.Print("On hit enemy");
+        GetNode("/root/GlobalAudio").Call("play_sfx", GD.Load<AudioStream>("res://assets/music/explode.ogg"));
         _enemyController.PlayerDestroyEnemy(enemyId);
         PlayerStates.Instance.DestroyedEnemies++;
         if (!_playerItems.ItemUsable("Dash"))
@@ -312,7 +315,10 @@ public partial class Player : CharacterBody2D
         if (_timeController.IsBulletTime)
             return;
         if (_playerItems.UseItemIfItUsable("SlowMode"))
+        {
+            GetNode("/root/GlobalAudio").Call("play_sfx", GD.Load<AudioStream>("res://assets/music/slowdownmixed.ogg"));
             _timeController.GoIntoSlowMode();
+        }
     }
 
     private void GoIntoDashMode()
@@ -329,6 +335,7 @@ public partial class Player : CharacterBody2D
         _dashingTime = 0;
         if (_playerItems.UseItemIfItUsable("Dash"))
         {
+            GetNode("/root/GlobalAudio").Call("play_sfx", GD.Load<AudioStream>("res://assets/music/zoomin.ogg"));
             _playerAnimation.PlayDash();
             _inDashMode = true;
             if (_lastUsableMouseMovement != Vector2.Zero)
